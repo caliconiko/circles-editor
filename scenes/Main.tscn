@@ -29,6 +29,7 @@ window_title = "Open a File"
 resizable = true
 mode = 0
 access = 2
+show_hidden_files = true
 current_dir = "/"
 current_path = "/"
 
