@@ -20,4 +20,16 @@ current_dir = "/"
 current_file = "/circles_program.png"
 current_path = "//circles_program.png"
 
+[node name="DebugFileDialog" type="FileDialog" parent="."]
+margin_left = 75.0
+margin_top = 187.0
+margin_right = 710.0
+margin_bottom = 644.0
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
+current_dir = "/"
+current_path = "/"
+
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_SaveFileDialog_file_selected"]

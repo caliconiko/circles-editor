@@ -5,6 +5,7 @@ var selected_paths = []
 
 onready var rectangle_selection = $RectangleSelection
 onready var save_file_dialog = $SaveFileDialog
+onready var debug_file_dialog = $DebugFileDialog
 
 var image
 
@@ -27,6 +28,9 @@ func _input(event):
 				image.flip_y()
 				print("Saving file")
 				save_file_dialog.show_modal()
+				
+			elif event.scancode == KEY_QUOTELEFT:
+				debug_file_dialog.popup()
 			
 			elif how_many_circles_selected < 1 and how_many_paths_selected < 1:
 				for circle_type in Global.CircleTypes.keys():
