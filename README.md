@@ -6,7 +6,7 @@ I made this to quickly make programs to test edge cases and stuff.
 
 ## How to use
 
-Make new circles by pressing the corresponding key for each circle type.
+Make new circles by pressing the corresponding key on the keyboard for each circle type.
 
 | Key | Circle Type |
 |-----|-------------|
