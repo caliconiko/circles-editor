@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://images/path-tile-back.png" type="Texture" id=1]
+[ext_resource path="res://images/path-tile-front.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Path.gd" type="Script" id=3]
+[ext_resource path="res://images/conditional.png" type="Texture" id=4]
+
+[node name="Path" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Stroke" type="Line2D" parent="."]
+z_index = 1
+points = PoolVector2Array( -50, -50, 50, 50 )
+width = 21.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 2 )
+texture_mode = 1
+
+[node name="Fill" type="Line2D" parent="."]
+z_index = -1
+points = PoolVector2Array( -50, -50, 50, 50 )
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 1 )
+texture_mode = 1
+
+[node name="Center" type="Sprite" parent="."]
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="." groups=["path"]]
+
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
