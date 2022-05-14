@@ -35,19 +35,26 @@ func load_assets():
 		circle_back_assets[index] = load(back_path)
 		circle_front_assets[index] = load(front_path)
 		
+		print(front_path)
+		
 	for path_type in PathTypes.keys():
 		var lower_path_type = path_type.to_lower()
-		var path_path = IMAGES_BASE_PATH+lower_path_type+".png"
+		var path_path = IMAGES_BASE_PATH+lower_path_type+"-path.png"
+		var import_path = IMAGES_BASE_PATH+lower_path_type+"-path.png.import"
 		
 		var index = PathTypes.get(path_type)
 
 		var file_exists = Directory.new().file_exists(path_path)
-		if file_exists:
+		var import_file_exists = Directory.new().file_exists(import_path)
+		if file_exists or import_file_exists:
 			path_assets[index] = load(path_path)
 		else:
 			path_assets[index] = null
 			
+		print(path_path)
+			
 	print(path_assets)
+	print(circle_front_assets)
 		
 func _ready():
 	load_assets()

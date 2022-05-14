@@ -30,7 +30,7 @@ resizable = true
 mode = 0
 access = 2
 show_hidden_files = true
-current_dir = "/"
-current_path = "/"
+current_dir = "/Niko/Godot/Projects/Circles Editor"
+current_path = "/Niko/Godot/Projects/Circles Editor/"
 
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_SaveFileDialog_file_selected"]
