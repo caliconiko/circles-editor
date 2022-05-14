@@ -9,6 +9,8 @@ onready var debug_file_dialog = $DebugFileDialog
 
 var image
 
+const last_path_config_path = "user://config.cfg"
+
 func _input(event):
 	if event is InputEventKey:
 		var just_pressed = event.is_pressed() and not event.is_echo()
@@ -24,10 +26,12 @@ func _input(event):
 				selected_paths.clear()
 				
 			elif event.scancode == KEY_ENTER:
-				image = get_viewport().get_texture().get_data()
-				image.flip_y()
-				print("Saving file")
-				save_file_dialog.show_modal()
+				if not save_file_dialog.visible:
+					image = get_viewport().get_texture().get_data()
+					image.flip_y()
+					set_last_path()
+					print("Saving file")
+					save_file_dialog.show_modal()
 				
 			elif event.scancode == KEY_QUOTELEFT:
 				debug_file_dialog.popup()
@@ -53,6 +57,23 @@ func _input(event):
 							c.deselect()
 						selected_circles.clear()
 
+func save_last_path(path:String):
+	var config = ConfigFile.new()
+
+	config.set_value("last", "path", path)
+
+	config.save(last_path_config_path)
+	
+func load_last_path():
+	var config = ConfigFile.new()
+
+	var err = config.load(last_path_config_path)
+	
+	if err != OK:
+		return "/circles_program.png"
+
+	return config.get_value("last", "path", "/circles_program.png")
+
 func _on_select_circle(circle:Node2D):
 	if selected_circles.has(circle):
 		circle.deselect()
@@ -76,7 +97,15 @@ func _on_select_path(path:Node2D):
 func _ready():
 	Global.connect("select_circle", self, "_on_select_circle")
 	Global.connect("select_path", self, "_on_select_path")
-
+	
+	set_last_path()
+	
+func set_last_path():
+	var last_path = load_last_path()
+	save_file_dialog.current_file = last_path
+	save_file_dialog.current_path = last_path
 
 func _on_SaveFileDialog_file_selected(path):
+	save_last_path(path)
+	
 	image.save_png(path)

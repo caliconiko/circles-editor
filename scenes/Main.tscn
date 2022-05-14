@@ -17,8 +17,8 @@ resizable = true
 access = 2
 filters = PoolStringArray( "*.png ; PNG Images" )
 current_dir = "/"
-current_file = "/circles_program.png"
-current_path = "//circles_program.png"
+current_file = "circles_program.png"
+current_path = "/circles_program.png"
 
 [node name="DebugFileDialog" type="FileDialog" parent="."]
 margin_left = 75.0
